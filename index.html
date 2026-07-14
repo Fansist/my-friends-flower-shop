@@ -1,0 +1,963 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Friend's Flower Shop | Downtown San Diego Florist</title>
+<meta name="description" content="My Friend's Flower Shop is a boutique floral studio in Downtown San Diego / Bankers Hill, offering custom-designed arrangements from traditional to dramatic 'over-the-top' styles.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #2b241f;
+    --paper: #faf6f0;
+    --paper-2: #f2eadf;
+    --rose: #a3475a;
+    --rose-deep: #7c3346;
+    --olive: #5c6b46;
+    --gold: #b8925a;
+    --line: rgba(43,36,31,0.14);
+    --shadow: 0 20px 50px -25px rgba(43,36,31,0.35);
+    --shadow-lift: 0 4px 10px -6px rgba(43,36,31,0.25), 0 24px 48px -24px rgba(43,36,31,0.4);
+    --radius: 4px;
+    --max: 1160px;
+    --speed: 0.7s;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+
+  body {
+    margin: 0;
+    background:
+      radial-gradient(circle at 1px 1px, rgba(43,36,31,0.05) 1px, transparent 0) 0 0/22px 22px,
+      var(--paper);
+    color: var(--ink);
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .display {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    line-height: 1.15;
+    margin: 0;
+    color: var(--rose-deep);
+    letter-spacing: 0.01em;
+  }
+
+  a { color: inherit; }
+
+  .container {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 clamp(1.25rem, 4vw, 2.5rem);
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  a.skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -60px;
+    background: var(--rose-deep);
+    color: #fff;
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--radius);
+    z-index: 200;
+    transition: top 0.2s ease;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  a.skip-link:focus { top: 1rem; }
+
+  /* Focus states */
+  a:focus-visible,
+  button:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* ---------- NAV ---------- */
+  header.site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(250, 246, 240, 0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.9rem clamp(1.25rem, 4vw, 2.5rem);
+    max-width: var(--max);
+    margin: 0 auto;
+    gap: 1rem;
+  }
+  .brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--rose-deep);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .brand span { color: var(--olive); }
+
+  nav.primary-links {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.75rem, 2vw, 1.75rem);
+  }
+  nav.primary-links a {
+    text-decoration: none;
+    font-size: 0.92rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--ink);
+    position: relative;
+    padding: 0.3rem 0.1rem;
+  }
+  nav.primary-links a::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: -2px;
+    width: 0%;
+    height: 2px;
+    background: var(--rose);
+    transition: width 0.25s ease;
+  }
+  nav.primary-links a:hover::after,
+  nav.primary-links a:focus-visible::after { width: 100%; }
+
+  .nav-cta {
+    background: var(--rose-deep);
+    color: #fff !important;
+    padding: 0.55rem 1.1rem;
+    border-radius: 999px;
+    text-transform: none !important;
+    letter-spacing: 0.01em !important;
+    font-size: 0.9rem !important;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .nav-cta::after { display: none; }
+  .nav-cta:hover, .nav-cta:focus-visible { background: var(--rose); transform: translateY(-1px); }
+
+  @media (max-width: 720px) {
+    nav.primary-links .nav-link-text { display: none; }
+    nav.primary-links { gap: 1rem; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    position: relative;
+    padding: clamp(4rem, 10vw, 7rem) 0 clamp(3.5rem, 8vw, 6rem);
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 85% 20%, rgba(184,146,90,0.18), transparent 55%),
+      radial-gradient(circle at 10% 80%, rgba(92,107,70,0.14), transparent 50%),
+      var(--paper);
+  }
+
+  .hero-petals {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  .hero-inner {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+  @media (max-width: 880px) {
+    .hero-inner { grid-template-columns: 1fr; }
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.78rem;
+    color: var(--olive);
+    font-weight: 500;
+    margin-bottom: 1.1rem;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 28px; height: 1px;
+    background: var(--olive);
+  }
+
+  h1.hero-title {
+    font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+    color: var(--rose-deep);
+  }
+  h1.hero-title em {
+    font-style: italic;
+    color: var(--rose);
+  }
+
+  .hero-tagline {
+    margin-top: 1.3rem;
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    max-width: 46ch;
+    color: #4a3f36;
+  }
+
+  .hero-ctas {
+    margin-top: 2.1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.95rem 1.7rem;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.98rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    border: 1.5px solid transparent;
+  }
+  .btn-primary {
+    background: var(--rose-deep);
+    color: #fff;
+    box-shadow: var(--shadow);
+  }
+  .btn-primary:hover, .btn-primary:focus-visible {
+    background: var(--rose);
+    transform: translateY(-2px);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--rose-deep);
+    border-color: var(--rose-deep);
+  }
+  .btn-secondary:hover, .btn-secondary:focus-visible {
+    background: var(--rose-deep);
+    color: #fff;
+    transform: translateY(-2px);
+  }
+
+  .hero-visual {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    display: grid;
+    place-items: center;
+  }
+
+  .hero-visual svg { width: 100%; height: 100%; }
+
+  @keyframes driftPetal {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(-6px, -14px) rotate(8deg); }
+  }
+  .hero-visual .petal-drift { animation: driftPetal 7s ease-in-out infinite; transform-origin: center; }
+  .hero-visual .petal-drift.d2 { animation-duration: 8.5s; animation-delay: -2s; }
+  .hero-visual .petal-drift.d3 { animation-duration: 6s; animation-delay: -4s; }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-visual .petal-drift { animation: none; }
+  }
+
+  .stat-chip {
+    position: absolute;
+    bottom: 6%;
+    left: -6%;
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 1rem 1.3rem;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--line);
+    max-width: 220px;
+  }
+  @media (max-width: 880px) {
+    .stat-chip { position: static; margin-top: 1.5rem; max-width: none; }
+  }
+  .stat-chip .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    color: var(--rose-deep);
+    font-weight: 600;
+    display: block;
+  }
+  .stat-chip .lbl {
+    font-size: 0.85rem;
+    color: #6b6055;
+  }
+
+  /* ---------- SCROLL REVEAL ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity var(--speed) ease, transform var(--speed) ease;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  }
+  .reveal-noscript-fallback { opacity: 1; }
+
+  /* ---------- SECTION SHELL ---------- */
+  section {
+    padding: clamp(3.5rem, 8vw, 6rem) 0;
+  }
+  .section-head {
+    max-width: 62ch;
+    margin-bottom: clamp(2rem, 5vw, 3.2rem);
+  }
+  .section-head .eyebrow { margin-bottom: 0.8rem; }
+  h2.section-title {
+    font-size: clamp(2rem, 4vw, 2.7rem);
+  }
+  .section-lede {
+    margin-top: 1rem;
+    color: #4a3f36;
+    font-size: 1.05rem;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about {
+    background: linear-gradient(180deg, transparent, rgba(92,107,70,0.06) 20%, rgba(92,107,70,0.06) 80%, transparent);
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+  @media (max-width: 880px) {
+    .about-grid { grid-template-columns: 1fr; }
+  }
+  .about-figure {
+    aspect-ratio: 4/5;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .about-figure svg { width: 100%; height: 100%; display: block; }
+
+  .about-copy p {
+    font-size: 1.08rem;
+    color: #3a322b;
+  }
+  .about-copy p + p { margin-top: 1.1rem; }
+  .about-copy .names {
+    color: var(--rose-deep);
+    font-weight: 500;
+  }
+
+  /* ---------- SERVICES ---------- */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.75rem;
+  }
+  .service-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 2rem 1.75rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--rose), var(--gold));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+  }
+  .service-card:hover, .service-card:focus-within {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lift);
+    border-color: var(--rose);
+  }
+  .service-card:hover::before, .service-card:focus-within::before { transform: scaleX(1); }
+  .service-icon {
+    width: 52px; height: 52px;
+    margin-bottom: 1.3rem;
+    color: var(--rose-deep);
+  }
+  .service-card h3 {
+    font-size: 1.4rem;
+    color: var(--rose-deep);
+    margin-bottom: 0.6rem;
+  }
+  .service-card p {
+    color: #574d43;
+    font-size: 0.98rem;
+    margin: 0;
+  }
+
+  /* ---------- HIGHLIGHTS STRIP ---------- */
+  .highlights {
+    background: var(--rose-deep);
+    color: #fdf5ef;
+    position: relative;
+    overflow: hidden;
+  }
+  .highlights::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 15% 30%, rgba(255,255,255,0.08), transparent 45%),
+                radial-gradient(circle at 85% 75%, rgba(255,255,255,0.06), transparent 50%);
+  }
+  .highlights .container { position: relative; }
+  .highlight-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+  }
+  .highlight-item {
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(255,255,255,0.25);
+  }
+  .highlight-item .h-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem;
+    display: block;
+    color: #f0c9a0;
+    font-weight: 600;
+  }
+  .highlight-item h3 {
+    color: #fff;
+    font-size: 1.1rem;
+    margin: 0.4rem 0 0.4rem;
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+  }
+  .highlight-item p {
+    margin: 0;
+    color: rgba(255,245,235,0.85);
+    font-size: 0.94rem;
+  }
+
+  /* ---------- FAQ ---------- */
+  .faq-list {
+    max-width: 780px;
+  }
+  details.faq-item {
+    border-bottom: 1px solid var(--line);
+    padding: 1.4rem 0;
+  }
+  details.faq-item summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--rose-deep);
+  }
+  details.faq-item summary::-webkit-details-marker { display: none; }
+  .faq-plus {
+    flex-shrink: 0;
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    border: 1.5px solid var(--rose);
+    display: grid;
+    place-items: center;
+    position: relative;
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+  .faq-plus::before, .faq-plus::after {
+    content: '';
+    position: absolute;
+    background: var(--rose);
+  }
+  .faq-plus::before { width: 12px; height: 2px; }
+  .faq-plus::after { width: 2px; height: 12px; transition: transform 0.3s ease; }
+  details[open] .faq-plus::after { transform: rotate(90deg) scaleY(0); }
+  details[open] .faq-plus { background: var(--rose); }
+  details[open] .faq-plus::before, details[open] .faq-plus::after { background: #fff; }
+
+  .faq-item p {
+    margin: 0.9rem 0 0;
+    color: #4a3f36;
+    max-width: 65ch;
+  }
+
+  /* ---------- VISIT ---------- */
+  .visit {
+    background: linear-gradient(180deg, rgba(184,146,90,0.08), transparent);
+  }
+  .visit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 3.5rem);
+  }
+  @media (max-width: 880px) {
+    .visit-grid { grid-template-columns: 1fr; }
+  }
+  .visit-card {
+    background: #fff;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    padding: clamp(1.75rem, 4vw, 2.75rem);
+    box-shadow: var(--shadow);
+  }
+  .visit-card h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
+  }
+  .visit-row {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    margin-bottom: 1.3rem;
+  }
+  .visit-row:last-child { margin-bottom: 0; }
+  .visit-row svg {
+    width: 22px; height: 22px;
+    flex-shrink: 0;
+    color: var(--rose);
+    margin-top: 0.2rem;
+  }
+  .visit-row a {
+    text-decoration: none;
+    color: var(--ink);
+    border-bottom: 1px solid var(--line);
+  }
+  .visit-row a:hover, .visit-row a:focus-visible { border-color: var(--rose); color: var(--rose-deep); }
+  .visit-row .label {
+    display: block;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--olive);
+    margin-bottom: 0.25rem;
+  }
+
+  .map-embed {
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    position: relative;
+    min-height: 340px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #efe6d8, #f6f0e6);
+  }
+  .map-embed svg { width: 90%; max-width: 320px; }
+  .map-embed .map-cta {
+    position: absolute;
+    bottom: 1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 2.5rem);
+  }
+  .map-embed .btn { width: 100%; justify-content: center; }
+
+  /* ---------- FOOTER ---------- */
+  footer.site-footer {
+    background: var(--ink);
+    color: #e8ded2;
+    padding: 3rem 0 2rem;
+  }
+  .footer-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.14);
+    padding-bottom: 2rem;
+  }
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: #fff;
+  }
+  .footer-brand span { color: var(--gold); }
+  .footer-tag {
+    margin-top: 0.5rem;
+    color: #b8ab9a;
+    font-size: 0.92rem;
+    max-width: 40ch;
+  }
+  footer nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  footer nav a {
+    color: #d8cdbe;
+    text-decoration: none;
+    font-size: 0.94rem;
+  }
+  footer nav a:hover, footer nav a:focus-visible { color: var(--gold); }
+  .footer-bottom {
+    padding-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 0.82rem;
+    color: #9b8f80;
+  }
+</style>
+      <!-- SEO:START (generated by _seo_inject.js) -->
+    <link rel="canonical" href="https://fansist.github.io/my-friends-flower-shop/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="My Friend's Flower Shop" />
+    <meta property="og:title" content="My Friend's Flower Shop: Florist in Bankers Hill" />
+    <meta property="og:description" content="Hand-picked fresh flowers made into custom arrangements for weddings, events and everyday occasions." />
+    <meta property="og:url" content="https://fansist.github.io/my-friends-flower-shop/" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="My Friend's Flower Shop: Florist in Bankers Hill" />
+    <meta name="twitter:description" content="Hand-picked fresh flowers made into custom arrangements for weddings, events and everyday occasions." />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Florist","name":"My Friend's Flower Shop","url":"https://fansist.github.io/my-friends-flower-shop/","telephone":"(619) 990-0413","address":{"@type":"PostalAddress","streetAddress":"1062 3rd Ave","addressLocality":"San Diego","addressRegion":"CA","postalCode":"92101","addressCountry":"US"},"description":"A downtown San Diego floral studio known for custom-designed arrangements spanning traditional, contemporary, and dramatic 'over-the-top' styles. The owner and his team hand-select every stem from trusted vendors for freshness and quality, and are famous among regulars for going above and beyond...","areaServed":{"@type":"City","name":"San Diego"}}</script>
+    <!-- SEO:END -->
+  </head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand">My Friend's <span>Flower Shop</span></a>
+    <nav class="primary-links" aria-label="Primary">
+      <a href="#about"><span class="nav-link-text">About</span></a>
+      <a href="#services"><span class="nav-link-text">Services</span></a>
+      <a href="#faq"><span class="nav-link-text">FAQ</span></a>
+      <a href="#visit"><span class="nav-link-text">Visit</span></a>
+      <a class="nav-cta" href="tel:+16199900413" aria-label="Call My Friend's Flower Shop at (619) 990-0413">Call (619) 990-0413</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <div id="top"></div>
+  <section class="hero">
+    <div class="container hero-inner">
+      <div>
+        <p class="eyebrow">Downtown San Diego &middot; Bankers Hill</p>
+        <h1 class="hero-title">Custom florals, hand&#8209;picked &amp; <em>a little over&#8209;the&#8209;top.</em></h1>
+        <p class="hero-tagline">A boutique floral studio where owner the owner and his team hand-select every stem from trusted vendors, crafting traditional, contemporary, and dramatic arrangements for the heart of the city.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="tel:+16199900413">Call (619) 990-0413</a>
+          <a class="btn btn-secondary" href="https://www.google.com/maps/search/?api=1&query=My%20Friend%27s%20Flower%20Shop%201062%203rd%20Ave%20San%20Diego%20CA%2092101" target="_blank" rel="noopener">Get Directions</a>
+        </div>
+      </div>
+      <div class="hero-visual reveal">
+        <svg viewBox="0 0 400 400" role="img" aria-label="Illustration of a bouquet of stylized flowers in a vase">
+          <defs>
+            <radialGradient id="bgGlow" cx="50%" cy="35%" r="65%">
+              <stop offset="0%" stop-color="#fdeee1"/>
+              <stop offset="100%" stop-color="#faf6f0" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <circle cx="200" cy="180" r="180" fill="url(#bgGlow)"/>
+          <path d="M150 260 L160 380 L240 380 L250 260 Z" fill="#7c3346" opacity="0.9"/>
+          <ellipse cx="200" cy="258" rx="55" ry="14" fill="#5c3040"/>
+          <g stroke="#5c6b46" stroke-width="5" fill="none">
+            <path d="M200 260 C190 210 175 190 150 150"/>
+            <path d="M200 260 C205 200 220 175 245 130"/>
+            <path d="M200 260 C198 190 200 150 200 100"/>
+            <path d="M200 260 C210 220 235 205 265 190"/>
+            <path d="M200 260 C185 220 160 205 130 190"/>
+          </g>
+          <g class="petal-drift">
+            <circle cx="150" cy="150" r="26" fill="#a3475a"/>
+            <circle cx="150" cy="150" r="10" fill="#f0c9a0"/>
+          </g>
+          <g class="petal-drift d2">
+            <circle cx="245" cy="130" r="30" fill="#b8925a"/>
+            <circle cx="245" cy="130" r="11" fill="#fdf5ef"/>
+          </g>
+          <g class="petal-drift d3">
+            <circle cx="200" cy="100" r="24" fill="#c4778a"/>
+            <circle cx="200" cy="100" r="9" fill="#f0c9a0"/>
+          </g>
+          <g class="petal-drift d2">
+            <circle cx="265" cy="190" r="20" fill="#5c6b46"/>
+            <circle cx="265" cy="190" r="8" fill="#fdf5ef"/>
+          </g>
+          <g class="petal-drift d3">
+            <circle cx="130" cy="190" r="22" fill="#a3475a"/>
+            <circle cx="130" cy="190" r="8" fill="#f0c9a0"/>
+          </g>
+        </svg>
+        <div class="stat-chip">
+          <span class="num">31</span>
+          <span class="lbl">reviews on <a href="https://www.yelp.com/biz/my-friends-flower-shop-san-diego-2" target="_blank" rel="noopener" style="color:var(--rose-deep);border-bottom:1px solid var(--line);text-decoration:none;">Yelp</a>, praising the personal, attentive service</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="about">
+    <div class="container about-grid">
+      <div class="about-figure reveal">
+        <svg viewBox="0 0 400 500" role="img" aria-label="Illustration of a florist arranging flowers at a workbench">
+          <rect width="400" height="500" fill="#f2ecdf"/>
+          <rect x="0" y="360" width="400" height="140" fill="#5c6b46" opacity="0.15"/>
+          <rect x="60" y="330" width="280" height="30" fill="#b8925a" opacity="0.4"/>
+          <circle cx="200" cy="180" r="90" fill="#a3475a" opacity="0.15"/>
+          <g stroke="#7c3346" stroke-width="4" fill="none">
+            <path d="M140 330 C150 270 160 240 150 190"/>
+            <path d="M180 330 C185 260 175 220 185 170"/>
+            <path d="M220 330 C215 260 225 220 215 170"/>
+            <path d="M260 330 C250 270 240 240 250 190"/>
+          </g>
+          <circle cx="150" cy="190" r="22" fill="#c4778a"/>
+          <circle cx="185" cy="170" r="26" fill="#a3475a"/>
+          <circle cx="215" cy="170" r="24" fill="#b8925a"/>
+          <circle cx="250" cy="190" r="22" fill="#5c6b46"/>
+          <circle cx="150" cy="190" r="8" fill="#fdf5ef"/>
+          <circle cx="185" cy="170" r="9" fill="#f0c9a0"/>
+          <circle cx="215" cy="170" r="9" fill="#fdf5ef"/>
+          <circle cx="250" cy="190" r="8" fill="#f0c9a0"/>
+        </svg>
+      </div>
+      <div class="about-copy">
+        <p class="eyebrow">Our Story</p>
+        <h2 class="section-title" style="margin-bottom:1rem;">A downtown studio built on personal touch</h2>
+        <p>My Friend's Flower Shop is a downtown San Diego floral studio known for custom-designed arrangements spanning traditional, contemporary, and dramatic &ldquo;over-the-top&rdquo; styles. <span class="names">Owner the owner</span> and his team hand-select every stem from trusted vendors for freshness and quality.</p>
+        <p>Regulars know the shop for going above and beyond, including meeting clients on days the shop is normally closed, and for thoughtful, personalized &ldquo;Passion Florals&rdquo; gifting and special-occasion pieces in the heart of the city.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">What We Do</p>
+        <h2 class="section-title">Arrangements, made to order</h2>
+        <p class="section-lede">Every piece is designed around the occasion, the recipient, and the freshest stems available that day.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="24" cy="16" r="8"/>
+            <path d="M24 24v18M16 42h16"/>
+          </svg>
+          <h3>Custom Arrangements</h3>
+          <p>Traditional, contemporary, and elaborate designs built around your style, not a fixed template.</p>
+        </div>
+        <div class="service-card reveal">
+          <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M24 6c6 6 12 12 12 20a12 12 0 0 1-24 0c0-8 6-14 12-20Z"/>
+          </svg>
+          <h3>Hand-Picked Fresh Stems</h3>
+          <p>Flowers are hand-selected from trusted vendors for freshness and quality on every order.</p>
+        </div>
+        <div class="service-card reveal">
+          <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M8 40 24 8l16 32H8Z"/>
+            <path d="M18 40v-8M30 40v-8"/>
+          </svg>
+          <h3>Weddings &amp; Special Occasions</h3>
+          <p>Event and everyday-occasion arrangements, as expected from a full-service neighborhood florist.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HIGHLIGHTS -->
+  <section class="highlights">
+    <div class="container">
+      <div class="highlight-grid">
+        <div class="highlight-item reveal">
+          <span class="h-num">31</span>
+          <h3>Reviews on Yelp</h3>
+          <p>Real customer feedback backing an established downtown reputation.</p>
+        </div>
+        <div class="highlight-item reveal">
+          <span class="h-num">DT</span>
+          <h3>Downtown / Bankers Hill</h3>
+          <p>Located in the heart of the city, easy to reach from surrounding downtown neighborhoods.</p>
+        </div>
+        <div class="highlight-item reveal">
+          <span class="h-num">B&amp;J</span>
+          <h3>Owner-Operator Service</h3>
+          <p>the owner and the team are repeatedly named and praised for their personal, attentive approach.</p>
+        </div>
+        <div class="highlight-item reveal">
+          <span class="h-num">PF</span>
+          <h3>Passion Florals Gifting</h3>
+          <p>Thoughtful, personalized gifting arrangements alongside standard occasion pieces.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Good to Know</p>
+        <h2 class="section-title">Frequently asked questions</h2>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item reveal" open>
+          <summary>What kind of flower shop is this?<span class="faq-plus" aria-hidden="true"></span></summary>
+          <p>My Friend's Flower Shop is a floral studio and florist in Downtown San Diego / Bankers Hill, specializing in custom-designed arrangements.</p>
+        </details>
+        <details class="faq-item reveal">
+          <summary>What styles of arrangements do you offer?<span class="faq-plus" aria-hidden="true"></span></summary>
+          <p>The shop is known for custom arrangements spanning traditional, contemporary, and dramatic &ldquo;over-the-top&rdquo; styles, tailored to each customer.</p>
+        </details>
+        <details class="faq-item reveal">
+          <summary>Where do the flowers come from?<span class="faq-plus" aria-hidden="true"></span></summary>
+          <p>The owner and his team hand-select every stem from trusted vendors to ensure freshness and quality.</p>
+        </details>
+        <details class="faq-item reveal">
+          <summary>Do you handle weddings or events?<span class="faq-plus" aria-hidden="true"></span></summary>
+          <p>As a full-service florist, the shop is set up for wedding, event, and everyday-occasion arrangements, call ahead to discuss your specific needs.</p>
+        </details>
+        <details class="faq-item reveal">
+          <summary>What's the best way to reach the shop?<span class="faq-plus" aria-hidden="true"></span></summary>
+          <p>Call (619) 990-0413 or stop by the studio at 1062 3rd Ave in Downtown San Diego to speak with the team directly.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISIT -->
+  <section id="visit" class="visit">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Find Us</p>
+        <h2 class="section-title">Visit the studio</h2>
+      </div>
+      <div class="visit-grid">
+        <div class="visit-card reveal">
+          <h3>Contact &amp; Location</h3>
+          <div class="visit-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            <div>
+              <span class="label">Address</span>
+              <a href="https://www.google.com/maps/search/?api=1&query=My%20Friend%27s%20Flower%20Shop%201062%203rd%20Ave%20San%20Diego%20CA%2092101" target="_blank" rel="noopener">1062 3rd Ave, San Diego, CA 92101</a>
+            </div>
+          </div>
+          <div class="visit-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 5c0 8.3 6.7 15 15 15l3-4-6-3-2 2c-2.5-1.2-4.8-3.5-6-6l2-2-3-6-4 0Z"/></svg>
+            <div>
+              <span class="label">Phone</span>
+              <a href="tel:+16199900413">(619) 990-0413</a>
+            </div>
+          </div>
+          <div class="visit-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+            <div>
+              <span class="label">Neighborhood</span>
+              <span>Downtown / Bankers Hill, San Diego</span>
+            </div>
+          </div>
+          <div class="visit-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+            <div>
+              <span class="label">Studio Hours</span>
+              <span>Mon, Fri, 9am, 3pm &middot; Sat, Sun closed (call ahead for special requests)</span>
+            </div>
+          </div>
+        </div>
+        <div class="map-embed reveal" role="img" aria-label="Stylized map pin illustration for the shop's downtown San Diego location">
+          <svg viewBox="0 0 320 240">
+            <rect width="320" height="240" fill="#efe6d8"/>
+            <path d="M0 60 H320 M0 120 H320 M0 180 H320" stroke="#e0d3bd" stroke-width="2"/>
+            <path d="M60 0 V240 M160 0 V240 M260 0 V240" stroke="#e0d3bd" stroke-width="2"/>
+            <path d="M160 70 C140 70 130 90 160 130 C190 90 180 70 160 70Z" fill="#a3475a"/>
+            <circle cx="160" cy="92" r="10" fill="#fdf5ef"/>
+          </svg>
+          <div class="map-cta">
+            <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&query=My%20Friend%27s%20Flower%20Shop%201062%203rd%20Ave%20San%20Diego%20CA%2092101" target="_blank" rel="noopener">Open in Google Maps</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <p class="footer-brand">My Friend's <span>Flower Shop</span></p>
+        <p class="footer-tag">A personal, boutique florist in Downtown San Diego, custom arrangements hand-crafted by the owner and team.</p>
+      </div>
+      <nav aria-label="Footer">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#faq">FAQ</a>
+        <a href="#visit">Visit</a>
+        <a href="tel:+16199900413">Call (619) 990-0413</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span>1062 3rd Ave, San Diego, CA 92101</span>
+      <span>&copy; My Friend's Flower Shop</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var revealEls = document.querySelectorAll('.reveal');
+    if (prefersReduced || !('IntersectionObserver' in window)) {
+      revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+      return;
+    }
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(function (el) { observer.observe(el); });
+  })();
+</script>
+
+</body>
+</html>
